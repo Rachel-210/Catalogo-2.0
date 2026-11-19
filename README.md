@@ -2,6 +2,14 @@
 
 Catálogo de motocicletas com carrinho de compras e finalização do pedido pelo WhatsApp, desenvolvido com **três bancos de dados**, cada um aplicado ao caso de uso em que é mais forte.
 
+## 📋 Identificação
+* **👤 Aluna:** Lia Rachel Ferreira de Sousa
+* **📚 Disciplina:** Projeto de Banco de Dados
+* **👨‍🏫 Professor:**  Anderson Soares Costa
+
+### 📹 Vídeo de Apresentação
+* **Link da Apresentação:** https://canva.link/ohhdwz989iwjvzh
+
 ## 🗄️ Arquitetura de dados (banco poliglota)
 
 | Banco | Para que é usado | Por quê |
