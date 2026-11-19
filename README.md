@@ -194,4 +194,4 @@ Dica: no DevTools do navegador (F12 > Network), as chamadas `produtos` e `consor
 | Cadastro de produto: "Too many files" | Mais arquivos do que o limite do upload (capa + fotos de cores + galeria); reduza a quantidade de imagens |
 
 ## 👩‍💻 Autoria
-Projeto desenvolvido como trabalho acadêmico sobre persistência poliglota. Base visual: catálogo de vendas Yamaha Água Branca.
+Projeto desenvolvido como trabalho acadêmico sobre persistência poliglota. Base visual: catálogo de vendas Yamaha Água Branca desenvolvido anteriormente por mim.
