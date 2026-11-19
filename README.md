@@ -8,7 +8,7 @@ Catálogo de motocicletas com carrinho de compras e finalização do pedido pelo
 * **👨‍🏫 Professor:**  Anderson Soares Costa
 
 ### 📹 Vídeo de Apresentação
-* **Link da Apresentação:** 
+* **Link da Apresentação:** https://canva.link/7hpf8chtgtoraa0
 
 ## 🗄️ Arquitetura de dados (banco poliglota)
 
