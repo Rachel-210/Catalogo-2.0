@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Painel administrativo (acesso restrito): login pelo [SUPABASE] e cadastro de produtos no [MONGODB]. Lógica em admin.js. -->
+    <title>Admin - Yamaha Água Branca</title>
+    <!-- Reaproveita o style.css do catálogo. -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca oficial do [SUPABASE] (supabase-js), carregada por CDN. Usada no admin.js para o login (Auth). -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Cabeçalho do painel. -->
+    <header class="main-header">
+        <div class="header-content"><h1>YAMAHA · ADMIN</h1><div class="header-stripe"></div></div>
+    </header>
+
+    <!-- Conteúdo do painel: primeiro a tela de login; depois do login, o painel. -->
+    <main class="admin-wrap">
+
+        <!-- TELA DE LOGIN: e-mail e senha são conferidos no [SUPABASE] Auth. Mensagens de erro aparecem em #login-erro. -->
+        <section id="tela-login" class="admin-card">
+            <h2>Login do Administrador</h2>
+            <form id="form-login">
+                <label>E-mail</label>
+                <input type="email" id="login-email" placeholder="admin@seudominio.com" required>
+                <label>Senha</label>
+                <input type="password" id="login-senha" placeholder="••••••••" required>
+                <p id="login-erro" class="admin-erro"></p>
+                <button type="submit" class="btn-submit-wpp">Entrar</button>
+            </form>
+        </section>
+
+        <!-- PAINEL: começa escondido (hidden) e só é mostrado pelo admin.js depois que o servidor confirma que o usuário é administrador. -->
+        <section id="tela-painel" hidden>
+            <!-- Barra com o e-mail do administrador, link para o catálogo e botão Sair (encerra a sessão no Supabase). -->
+            <div class="admin-topbar">
+                <span id="admin-email"></span>
+                <span><a href="/" target="_blank">Ver catálogo ↗</a> &nbsp; <button id="btn-sair">Sair</button></span>
+            </div>
+
+            <!-- CARTÃO 1 — Cadastrar produto: os dados são enviados para a API e salvos como documento na coleção "produtos" do [MONGODB]. -->
+            <div class="admin-card">
+                <h2>Cadastrar novo produto</h2>
+                <form id="form-produto">
+                    <label>Nome do produto</label>
+                    <input type="text" name="nome" placeholder="Ex.: Capacete Yamaha" required maxlength="80">
+                    <label>Preço (R$)</label>
+                    <!-- Preço do produto. Se o produto tiver planos de consórcio, o catálogo passa a mostrar o valor do crédito do plano no lugar deste preço. -->
+                    <input type="number" name="preco" step="0.01" min="0.01" placeholder="1999.90" required>
+                    <label>Categoria</label>
+                    <input type="text" name="categoria" placeholder="Scooter, Naked, Acessório...">
+                    <label>Descrição</label>
+                    <textarea name="descricao" rows="4" placeholder="Descrição do produto" maxlength="2000"></textarea>
+                    <label>Imagem de capa (arquivo)</label>
+                    <!-- Imagem de capa: arquivo enviado (salvo em public/uploads) ou, alternativamente, o caminho/URL no campo seguinte. -->
+                    <input type="file" name="capa" accept="image/*">
+                    <label>ou URL/caminho da capa</label>
+                    <input type="text" name="capa_url" placeholder="https://... ou carrosselNMAX/NMAX-Capa.png">
+                    <label>Variações de Cor e Foto (cada cor ligada à sua imagem)</label>
+                    <!-- Fotos do carrossel, uma por cor, na mesma ordem das cores (até 8). -->
+                    <div id="lista-variacoes" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px;"></div>
+                    <button type="button" id="btn-add-variacao" style="background: #4A4A4A; color: white; border: none; border-radius: 6px; padding: 10px 14px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">
+                            + Adicionar Cor e Foto
+                    </button>
+                    <label>Fotos da galeria (até 3 imagens de detalhe)</label>
+                    <!-- Fotos de detalhe da galeria (até 3). -->
+                    <input type="file" name="galeria" accept="image/*" multiple>
+                    <p id="produto-msg"></p>
+                    <button type="submit" class="btn-submit-wpp">Cadastrar produto</button>
+                </form>
+            </div>
+
+            <!-- CARTÃO 2 — Planos de consórcio: gravados na tabela planos_consorcio do [SUPABASE] (a API usa o token do administrador logado). -->
+            <div class="admin-card">
+                <h2>Planos de consórcio</h2>
+                <form id="form-plano">
+                    <label>Produto</label>
+                    <!-- Lista de produtos do [MONGODB]; o valor escolhido (slug) vira o id_moto do plano no Supabase. -->
+                    <select id="plano-produto" name="id_moto" required></select>
+                    <label>Valor do crédito (R$)</label>
+                    <input type="number" name="valor_credito" step="0.01" min="0.01" placeholder="15000" required>
+                    <label>Prazo (meses)</label>
+                    <input type="number" name="prazo" step="1" min="1" placeholder="72" required>
+                    <label>Valor da parcela (R$)</label>
+                    <input type="number" name="valor_parcela" step="0.01" min="0.01" placeholder="299.90" required>
+                    <p id="plano-msg"></p>
+                    <button type="submit" class="btn-submit-wpp">Adicionar plano</button>
+                </form>
+                <h2 style="margin-top:25px;font-size:16px">Planos do produto selecionado</h2>
+                <!-- Planos já cadastrados para o produto selecionado, com botão Excluir. -->
+                <div id="lista-planos"></div>
+            </div>
+
+            <!-- CARTÃO 3 — Produtos cadastrados ([MONGODB]) com botão Excluir. -->
+            <div class="admin-card">
+                <h2>Produtos cadastrados</h2>
+                <div id="lista-admin"></div>
+            </div>
+        </section>
+    </main>
+    <!-- Lógica do painel (admin.js). -->
+    <script src="admin.js"></script>
+</body>
+</html>

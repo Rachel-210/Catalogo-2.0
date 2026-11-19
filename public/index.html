@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Página pública do cliente. Os dados dos produtos NÃO estão escritos aqui: o script.js busca tudo na API ([MONGODB]). -->
+    <title>Yamaha - Água Branca</title>
+    <!-- Estilos de toda a página (style.css). -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <!-- Cabeçalho com o nome da marca. -->
+   <header class="main-header">
+    <div class="header-content">
+        <h1>YAMAHA</h1>
+        <div class="header-stripe"></div>
+    </div>
+</header>
+
+<!-- Faixa de apresentação da loja: banner, logo, nome e ícones de redes sociais (conteúdo fixo, sem banco de dados). -->
+<section class="profile-section">
+    <div class="profile-bg-banner">
+        <img src="imagens/banner.jfif" alt="Background Yamaha">
+    </div>
+
+    <div class="profile-content">
+        <div class="logo-container">
+            <img src="imagens/yamaha.logo.jpeg" class="main-logo">
+        </div>
+        
+        <h2 class="profile-name">Catálogo de Vendas</h2>
+        <p class="profile-tagline">REVS YOUR HEART</p>
+        
+        <div class="social-icons">
+            <a href="https://wa.me/558698177973" target="_blank">
+                <img src="imagens/icone-wpp2.jpg" alt="WhatsApp">
+            </a>
+            <a href="https://instagram.com/autorizadayamahaab" target="_blank">
+                <img src="imagens/icone-do-insta.avif" alt="Instagram">
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Faixa "Vistos recentemente": começa escondida e é preenchida pelo script.js com dados do [REDIS] (via /api/recentes). -->
+    <section id="recentes-section" class="recentes-section" hidden>
+        <h2 class="recentes-titulo">Vistos recentemente</h2>
+        <div id="recentes-lista" class="recentes-lista"></div>
+    </section>
+
+    <!-- Catálogo: os cards dos produtos são criados pelo script.js a partir do [MONGODB] (via /api/produtos). -->
+    <section class="products-grid" id="lista-motos">
+        <p class="msg-catalogo">Carregando catálogo...</p>
+    </section>
+
+    <!-- Modal do formulário de financiamento. Ao enviar, o script.js monta a mensagem e abre o WhatsApp (nada é salvo em banco). -->
+    <div id="modal-financiamento" class="modal-overlay">
+        <div class="modal-content modal-form">
+            <span class="close-modal">&times;</span>
+            <h2>Financiamento:</h2>
+            <form id="form-financiamento">
+                <label>Nome</label>
+                <input type="text" name="nome" placeholder="Nome completo" required>
+                <label>Cidade</label>
+                <input type="text" name="cidade" placeholder="Cidade" required>
+                <label>Data de nascimento</label>
+                <input type="text" id="campo-data_nascimento" name="data_nascimento" placeholder="00/00/0000" required>
+                <label>CPF</label>
+                <input type="text" id="campo-cpf" name="cpf" placeholder="000.000.000-00" required>
+                <label>Telefone do titular do CPF</label>
+                <input type="tel" id="campo-telefone" name="telefone" placeholder="(86) 0000-0000" required>
+                <label>Modelo da Moto</label>
+                <select name="modelo_moto" required>
+                    <option value="" disabled selected>Escolha aqui</option>
+                    <option value="Neo's Connected">Neo's Connected</option>
+                    <option value="Fluo Hybrid">Fluo Hybrid</option>
+                    <option value="NMAX ABS">NMAX ABS</option>
+                    <option value="XMAX 300">XMAX 300</option>
+                    <option value="FZ15">FZ15</option>
+                    <option value="FZ25">FZ25</option>
+                    <option value="FACTOR">FACTOR</option>
+                    <option value="FACTOR DX">FACTOR DX</option>
+                    <option value="Crosser 150 S">Crosser 150 S</option>
+                    <option value="Crosser 150 Z">Crosser 150 Z</option>
+                    <option value="Lander">Lander</option>
+                    <option value="MT 03">MT 03</option>
+                    <option value="MT 07">MT 07</option>
+                    <option value="R3">R3</option>
+                    <option value="R15">R15</option>
+                    <option value="Aerox">Aerox</option>
+                </select>
+                <label>Valor da entrada</label>
+                <input type="text" id="campo-valor_entrada" name="valor_entrada" placeholder="R$ 0.000,00" required>
+                <label>Assalariado ou autônomo?</label>
+                <select name="tipo_trabalho">
+                    <option value="Sou assalariado">Sou assalariado</option>
+                    <option value="Sou autônomo">Sou autônomo</option>
+                </select>
+                <label>CNH</label>
+                <select name="tem_cnh">
+                    <option value="Tenho CNH">Tenho CNH</option>
+                    <option value="Não tenho CNH">Não tenho CNH</option>
+                </select>
+                <label>Renda mensal</label>
+                <input type="text" id="campo-renda_mensal" name="renda_mensal" placeholder="R$ 0.000,00" required>
+                <button type="submit" class="btn-submit-wpp"> Enviar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de consórcio. O nome, o valor do crédito e as linhas da tabela são preenchidos com planos do [SUPABASE] (via /api/consorcio/:slug). -->
+    <div id="modal-consorcio" class="modal-overlay">
+    <div class="modal-content modal-table-container">
+        <!-- O "×" chama a função fecharModalConsorcio() do script.js. -->
+        <span class="close-modal" onclick="fecharModalConsorcio()">&times;</span>
+        
+        <div class="table-header">
+            <h2 id="consorcio-nome-moto">CARREGANDO...</h2>
+            <div class="credito-box">
+                <span>VALOR DO CRÉDITO</span>
+                <strong id="consorcio-valor-credito">R$ 0.000,00</strong>
+            </div>
+        </div>
+        
+        <div class="table-wrapper">
+            <!-- Tabela de planos: "QUANTIDADE" mostra o prazo (ex.: 72x) e "PARCELA" mostra o valor da parcela. -->
+            <table class="consorcio-table">
+                <thead>
+                   <tr>
+                   <th>QUANTIDADE</th> 
+                   <th>PARCELA</th> </tr>
+                </thead>
+                   <tbody id="tabela-corpo-consorcio">
+                   </tbody>
+            </table>
+        </div>
+
+        <div class="table-footer">
+            <p>Os valores acima são referenciais e podem sofrer alterações sem aviso prévio conforme as normas da administradora do consórcio.</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal "Sobre a moto": carrossel de fotos, cores, descrição e galeria, preenchidos com o documento do produto no [MONGODB]. -->
+    <div id="modal-sobre" class="modal-overlay">
+        <div class="modal-content modal-about">
+            <span class="close-modal modal-about-close">&times;</span>
+            
+            <div class="about-header">
+                <p class="about-subtitle">SOBRE A</p>
+                <h2 class="about-title" id="sobre-titulo">NOME DA MOTO</h2>
+            </div>
+
+            <div class="about-main-layout">
+                <div class="about-left-col">
+                    <div class="main-image-wrapper">
+                        <div id="container-imagem-principal">
+                            <img src="" id="imagem-principal" class="moto-slide-img">
+                        </div>
+                    </div>
+
+                    <div class="dots-indicator" id="dots-container">
+                        </div>
+
+                    <p class="colors-label">CORES DISPONÍVEIS</p>
+                    <div class="color-options" id="sobre-cores"></div>
+
+                    <p class="about-description" id="sobre-descricao"></p>
+                </div>
+                
+                <div class="about-right-gallery" id="sobre-galeria">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão flutuante do carrinho; o número mostra a quantidade de itens (guardados no localStorage do navegador). -->
+    <button id="btn-carrinho" class="btn-carrinho-flutuante" aria-label="Abrir carrinho">
+        🛒 <span id="carrinho-contador">0</span>
+    </button>
+
+    <!-- Modal do carrinho: lista de itens com + / - / remover, total e botão "Comprar pelo WhatsApp" (abre o WhatsApp com o pedido formatado). -->
+    <div id="modal-carrinho" class="modal-overlay">
+        <div class="modal-content modal-form modal-carrinho">
+            <span class="close-modal">&times;</span>
+            <h2>Seu Carrinho</h2>
+            <div id="carrinho-itens"></div>
+            <div class="carrinho-total">Total: <strong id="carrinho-total">R$ 0,00</strong></div>
+            <button type="button" id="btn-limpar-carrinho" class="btn-limpar">Esvaziar carrinho</button>
+            <button type="button" id="btn-finalizar" class="btn-submit-wpp">Comprar pelo WhatsApp</button>
+        </div>
+    </div>
+
+    <!-- Lógica da página (script.js). -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Arquivos que NÃO vão para o GitHub.
+# node_modules/: bibliotecas baixadas pelo npm install (são recriadas com npm install).
+node_modules/
+# .env: contém as senhas e chaves dos bancos. Nunca deve ser publicado.
+.env
+# public/uploads/: imagens enviadas pelo painel admin durante os testes (não fazem parte do código)...
+public/uploads/*
+# ...mas o arquivo .gitkeep é mantido para a pasta existir no repositório.
+!public/uploads/.gitkeep

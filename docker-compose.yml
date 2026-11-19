@@ -1,0 +1,18 @@
+services:
+  # [MONGODB] Banco de documentos onde ficam os produtos.
+  mongo:
+    image: mongo:7
+    container_name: catalogo-mongo
+    # Porta do MongoDB (a mesma da MONGO_URI).
+    ports: ["27017:27017"]
+    # Guarda os dados em um volume do Docker, para não perder os produtos ao desligar o container.
+    volumes: ["mongo_data:/data/db"]
+  # [REDIS] Cache do catálogo e lista de "vistos recentemente".
+  redis:
+    image: redis:7-alpine
+    container_name: catalogo-redis
+    # Porta do Redis (a mesma da REDIS_URL).
+    ports: ["6379:6379"]
+# Declaração do volume usado pelo MongoDB.
+volumes:
+  mongo_data:
