@@ -186,20 +186,5 @@ Dica: no DevTools do navegador (F12 > Network), as chamadas `produtos` e `consor
 - Upload aceita apenas imagens (jpg, png, webp, avif, gif) de até 5 MB cada.
 - No registro de pedidos, os preços e nomes são conferidos no servidor, nunca confiados ao navegador.
 
-## 🛠️ Problemas comuns
-
-| Mensagem | Causa provável |
-|---|---|
-| `Variável ... não definida` | `.env` ausente, com nome errado (`.env.txt`) ou linha sem preencher |
-| `bad auth` / `Authentication failed` (Mongo) | Usuário ou senha errados na `MONGO_URI` |
-| `timed out` (Mongo) | IP não liberado em *Network Access* no Atlas |
-| `Redis inacessível` | Endereço, porta ou senha errados na `REDIS_URL` |
-| Admin: "Este usuário não é administrador" | E-mail diferente do `ADMIN_EMAILS` |
-| Admin: "E-mail ou senha inválidos" | Usuário não criado no Supabase ou sem *Auto Confirm* |
-| Catálogo vazio | Faltou rodar `npm run seed` |
-| Consórcio: "Nenhum plano cadastrado" | Faltou rodar o `consorcio_inserts.sql` (se existir) ou cadastrar o plano no admin; ou o `id_moto` não bate com o slug do produto |
-| Imagem de produto não aparece | O caminho no MongoDB não bate com o nome do arquivo (atenção a maiúsculas/minúsculas em Linux/Mac); rode `npm run seed` de novo |
-| Cadastro de produto: "Too many files" | Mais arquivos do que o limite do upload (capa + fotos de cores + galeria); reduza a quantidade de imagens |
-
 ## 👩‍💻 Autoria
 Projeto desenvolvido como trabalho acadêmico sobre persistência poliglota. Base visual: catálogo de vendas Yamaha Água Branca desenvolvido anteriormente por mim.
