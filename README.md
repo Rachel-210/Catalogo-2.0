@@ -1,6 +1,6 @@
 # 🏍️ Catálogo Yamaha — E-commerce com Banco de Dados Poliglota
 
-Catálogo de motocicletas com carrinho de compras e finalização do pedido pelo WhatsApp, desenvolvido com **três bancos de dados**, cada um aplicado ao caso de uso em que é mais forte.
+Catálogo de motocicletas com carrinho de compras e finalização do pedido pelo WhatsApp, desenvolvido com **três bancos de dados**, cada um aplicado ao caso de uso em que é mais forte. Os comentários presentes no código servem como uma documentação para especificar funções e a utilização de cada banco dentro do projeto.
 
 ## 📋 Identificação
 * **👤 Aluna:** Lia Rachel Ferreira de Sousa
