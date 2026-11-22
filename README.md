@@ -10,6 +10,36 @@ https://rachel-210.github.io/Catalogo_De_Vendas/
 * **📚 Disciplina:** Projeto de Banco de Dados
 * **👨‍🏫 Professor:**  Anderson Soares Costa
 
+## 📸 Capturas de Tela
+
+* **Tela Login Admin:**  
+<div align="center">
+  <img src="imagens/relatorio.png.png" width="900">
+</div>
+
+* **Tela de Gerenciamento do Admin:**  
+<div align="center">
+  <img src="imagens/produtos2.png.png" width="900">
+</div>
+
+<div align="center">
+  <img src="imagens/produtos2.png.png" width="900">
+</div>
+
+<div align="center">
+  <img src="imagens/produtos2.png.png" width="900">
+</div>
+
+* **Catálogo de Produtos:**  
+<div align="center">
+  <img src="imagens/produtos1.png.png" width="900">
+</div>
+
+* **Cadastro de Nova Venda:**  
+<div align="center">
+  <img src="imagens/nova_venda.png.png" width="900">
+</div>
+
 ### 📹 Vídeo de Apresentação
 * **Link da Apresentação:** https://canva.link/5sipm3gs7bt7b2q
 
