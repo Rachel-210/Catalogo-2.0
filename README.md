@@ -14,30 +14,29 @@ https://rachel-210.github.io/Catalogo_De_Vendas/
 
 * **Tela Login Admin:**  
 <div align="center">
-  <img src="imagens/relatorio.png.png" width="900">
+  <img src="imagens/login_admin.png" width="900">
 </div>
 
 * **Tela de Gerenciamento do Admin:**  
 <div align="center">
-  <img src="imagens/produtos2.png.png" width="900">
+  <img src="imagens/cadastro_produto.png" width="900">
 </div>
 
 <div align="center">
-  <img src="imagens/produtos2.png.png" width="900">
+  <img src="imagens/planos_consorcio.png" width="900">
 </div>
 
 <div align="center">
-  <img src="imagens/produtos2.png.png" width="900">
+  <img src="imagens/Produtos_cadastrados.png" width="900">
 </div>
 
 * **Catálogo de Produtos:**  
 <div align="center">
-  <img src="imagens/produtos1.png.png" width="900">
+  <img src="imagens/catalogo1.png" width="900">
 </div>
-
-* **Cadastro de Nova Venda:**  
+ 
 <div align="center">
-  <img src="imagens/nova_venda.png.png" width="900">
+  <img src="imagens/catalogo2.png" width="900">
 </div>
 
 ### 📹 Vídeo de Apresentação
