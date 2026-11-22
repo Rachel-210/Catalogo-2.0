@@ -2,6 +2,9 @@
 
 Catálogo de motocicletas com carrinho de compras e finalização do pedido pelo WhatsApp, desenvolvido com **três bancos de dados**, cada um aplicado ao caso de uso em que é mais forte. Os comentários presentes no código servem como uma documentação para especificar funções e a utilização de cada banco dentro do projeto.
 
+#### Visualize aqui a primeira versão do Catálogo que está em uso pela Loja Yamaha em Água Branca-PI:
+https://rachel-210.github.io/Catalogo_De_Vendas/
+
 ## 📋 Identificação
 * **👤 Aluna:** Lia Rachel Ferreira de Sousa
 * **📚 Disciplina:** Projeto de Banco de Dados
