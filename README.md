@@ -10,7 +10,7 @@ https://rachel-210.github.io/Catalogo_De_Vendas/
 * **📚 Disciplina:** Projeto de Banco de Dados
 * **👨‍🏫 Professor:**  Anderson Soares Costa
 
-## 📸 Capturas de Tela
+## 📸 Capturas de Tela da Versão Final com Banco Poliglota
 
 * **Tela Login Admin:**  
 <div align="center">
