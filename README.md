@@ -17,7 +17,7 @@ https://rachel-210.github.io/Catalogo_De_Vendas/
   <img src="imagens/login_admin.png" width="900">
 </div>
 
-* **Tela de Gerenciamento do Admin:**  
+* **Telas de Gerenciamento do Admin:**  
 <div align="center">
   <img src="imagens/cadastro_produto.png" width="900">
 </div>
